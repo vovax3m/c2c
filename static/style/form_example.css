@@ -1,0 +1,18 @@
+.c2c_number{
+	background:white;
+	border:1px solid black;
+	border-radius:2px;
+	font-size:15px ;
+	margin:5px;
+	padding:5px;
+	width:100px;
+}
+.c2c_submit{
+	border:1px  solid black;
+	background:white;
+	border-radius:2px;
+	font-size:16px ;
+	margin:5px;
+	padding:5px;
+	width:100px;
+}
