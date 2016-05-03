@@ -174,3 +174,30 @@ label{
 		color: #016CB0;
 	}
 	
+.input100 {
+    width: 100px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 1px 1px 1px;
+    outline: 0;
+    font-size: 18px;
+	font-family: "Play";
+}
+.input210 {
+    width: 210px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 1px 1px 1px;
+    outline: 0;
+    font-size: 18px;
+	font-family: "Play";
+}
+table{
+	width: 50%;
+	font-size: 18px;
+	font-family: "Play";
+	/*border: 1px solid #ccc;*/
+	text-align:center;
+}

@@ -13,23 +13,112 @@
 		
 	}
 	function preview(){
-	  var style='.c2c_ir2{'+
-	  'color: red;' +
-      'font-size: 80px;'+
-	  'line-height: 30px;'+
-      'font-family: "c2c";'+
-      'font-style: normal;' +
-      'font-weight: normal;'+
-      'display: inline-block;' +
-	  'cursor:pointer;'+
-	  'margin:3px;' +
-	  'padding:5px;'+
-      'text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);'+
-	  '}'+
-	  '.c2c_ir2:hover{'+
-	  'color: #016CB0;}'
-	  ;
-	  $('#result').attr('class',$('#widget_name').val()).html('&#'+ $('#widget_code').val() + ';');
+	  var bg_color=( $('#bg_color').val()  ? $('#bg_color').val() : 'red'  );
+	  var hover=( $('#hover').val()  ? $('#hover').val() : '#016CB0'  );
+	  var size=( $('#widget_size').val()  ? $('#widget_size').val() : '60'  );
+	  var title=$('#title').val();
+	  var font_size=$('#font_size').val();
+	  var title_text_color=$('#title_text_color').val();
+	  var block_radius=$('#block_radius').val();
+	  var text_color=$('#text_color').val();
+	  var block_border_color=$('#block_border_color').val();
+	  var block_width= $('#block_width').val() + $('#width_type').val();
+	  var btn_color=$('#btn_color').val();
+	  var top='25%';
+	  var right='10%';
+	  var btn_value=$('#btn_value').val();
+	  var style='.c2c_widget { \
+						z-index: 999 !important; \
+						margin: 5px !important; \
+						padding: 5px !important; \
+						position: fixed; \
+						top:'+top+'; \
+						right: '+right+'; \
+						color:'  +bg_color +'; \
+						cursor: pointer; \
+						font-size: '+size+'px; \
+						line-height: '+(size/2)+'px; \
+						font-family: c2c; \
+						font-style: normal; \
+						font-weight: normal; \
+						display: inline-block; \
+						text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);  \
+					} \
+					.c2c_widget:hover { \
+						color: '+hover+'; \
+						-webkit-animation-play-state: paused;animation-play-state: paused; \
+					}; \
+					.c2c_close{ \
+					top: 5px; \
+					right: 5px; \
+					align:right; \
+					cursor: pointer; \
+					font-size:'+font_size+'px !important; \
+					color: '+ title_text_color +' !important; \
+					position: absolute; \
+				} \
+				.c2c_title{ \
+					font-size: '+font_size+'px !important; \
+					color: '+ title_text_color +' !important; \
+				} \
+				.c2c_options{ \
+					font-size: '+font_size+'px !important; \
+					color: '+ title_text_color +' !important; \
+				} \
+				.c2c_table,.c2c_table tr,.c2c_table td{\
+				background: ' +bg_color +' !important; \
+				border: 0px !important;\
+				color: '+ text_color+' !important; \
+				margin: 0px !important; \
+				padding:0px !important; \
+				width:auto; \
+				}\
+				.c2c_block{ \
+					font-family:Helvetica, Arial, sans-serif;\
+					position:fixed; \
+					top:20%; \
+					right: 5%; \
+					background: ' +bg_color +' !important; \
+					border-radius: ' + block_radius +'px !important;\
+					border: 1px solid '+ block_border_color+' !important;\
+					width:'+ block_width+' !important; \
+					color: '+ text_color+' !important; \
+					z-index: 999 !important; \
+				} \
+				.c2c_submit{ \
+					border: 1px solid black !important; \
+					background: '+ btn_color+' !important; \
+					border-radius: 2px !important; \
+					font-size: '+font_size+' !important; \
+					color: '+ text_color+' !important; \
+					margin: 5px !important; \
+					cursor: pointer; \
+					padding: 5px !important; \
+					width: 100px !important; \
+				} \
+				.c2c_opt_span{ \
+					cursor: pointer; \
+					font-family: c2c-gear; \
+					font-style: normal; \
+					font-weight: normal; \
+					display: inline-block; \
+					font-size: '+font_size+'  !important; \
+					color: '+ title_text_color +' !important; \
+				} \
+				.c2c_number{ \
+					background: white !important;\
+					border: 1px solid black !important; \
+					border-radius: 2px !important; \
+					width: 130px !important; \
+					margin: 5px !important; \
+					padding: 5px !important; \
+					font-size: ' + font_size + ' !important; \
+				} ';
+	  
+	  var content='<i title="'+title+'" id="c2c_push" onclick="c2c_switch();"  class="c2c_widget '+$('#widget_name').val()+' '+$('#animation').val()+ ' ">&#'+ $('#widget_code').val() + ';</i><div id="c2c_block" class="c2c_block " style="display:none" align="center"><table class="c2c_table" align="center"><tr><td colspan="3" align="center" ><span id="c2c_title" class="c2c_title">'+title+'</span></td></tr><tr><td><input type="text" class="c2c_number" id="c2c_number" placeholder="74951234567"></td><td><input class="c2c_submit" type="submit"  value="'+ btn_value+'" onclick="alert('+title+');"><span  onclick="c2c_switch();" class="c2c_close" title="закрыть" >x</span></td></tr></table><br><div id="c2c_status"></div></div>';
+	  
+	  $("#result").html(content);
+	  //$('#result').attr('class',$('#widget_name').val()).html('&#'+ $('#widget_code').val() + ';');
 	  $('#c2c_widget').remove();	
 	  $('<style type="text/css" id="c2c_widget">' + style + '</style>').appendTo('head');	
 	}
@@ -37,87 +126,315 @@
 	$('<link rel="stylesheet" href="/css/animation/scale.css">').appendTo('head');
 	$('<link rel="stylesheet" href="/css/animation/ring.css">').appendTo('head');
 	// .css("line-height", this.value/2+"px" );
+	function c2c_show(){
+		$("#c2c_push").show();
+	}
+	function c2c_hide(){
+		$("#c2c_push").hide();
+	}
+	function c2c_toggle(){
+		$("#c2c_options").toggle();
+	}
+	function c2c_switch(){
+		$("#c2c_push").toggle();
+		$("#c2c_block").toggle();
+	}
 	</script>
 	<p class="title">Выбор виджета</p>
 	<p> 
-		<i class="c2c_icon_list c2c-phone-circled" onclick="$('#widget_name').val('c2c_ir2 c2c-phone-circled'); $('#widget_code').val('xe812');preview();">&#xe812;</i>
-	    <i class="c2c_icon_list c2c-phone-squared" onclick="$('#result').attr('class',' c2c_ir c2c-phone-squared').html('&#xe801;');">&#xe801;</i>
-		<i class="c2c_icon_list c2c-phone" onclick="$('#result').attr('class','c2c_ir c2c-phone').html('&#xe800;');">&#xe800;</i>
-		<i class="c2c_icon_list c2c-call" onclick="$('#result').attr('class','c2c_ir c2c-call').html('&#xe80f;');">&#xe80f;</i>
-		<i class="c2c_icon_list c2c-phone-3" onclick="$('#result').attr('class','c2c_ir c2c-phone-3').html('&#xe813;');">&#xe813;</i>
-        <i class="c2c_icon_list c2c-phone-1" onclick="$('#result').attr('class','c2c_ir c2c-phone-1').html('&#xe806;');">&#xe806;</i>
-        <i class="c2c_icon_list c2c-phone-outline" onclick="$('#result').attr('class','c2c_ir c2c-phone-outline').html('&#xe807;');">&#xe807;</i>
-		<i class="c2c_icon_list c2c-phone-2" onclick="$('#result').attr('class','c2c_ir c2c-phone-2').html('&#xe808;');">&#xe808;</i>		
-		<i class="c2c_icon_list c2c-sort-numeric" onclick="$('#result').attr('class','c2c_ir c2c-sort-numeric').html('&#xe80a;');">&#xe80a;</i>
-        <i class="c2c_icon_list c2c-sort-numeric-outline" onclick="$('#result').attr('class','c2c_ir c2c-sort-numeric-outline').html('&#xe809;');">&#xe809;</i>		
+		<i class="c2c_icon_list c2c-phone-circled" onclick="$('#widget_name').val('c2c-phone-circled'); $('#widget_code').val('xe812');preview();">&#xe812;</i>
+	    <i class="c2c_icon_list c2c-phone-squared" onclick="$('#widget_name').val('c2c-phone-squared'); $('#widget_code').val('xe801');preview();">&#xe801;</i>
+		<i class="c2c_icon_list c2c-phone" onclick="$('#widget_name').val('c2c-phone'); $('#widget_code').val('xe800');preview();">&#xe800;</i>
+		<i class="c2c_icon_list c2c-call" onclick="$('#widget_name').val('c2c-call'); $('#widget_code').val('xe80f');preview();">&#xe80f;</i>
+		<i class="c2c_icon_list c2c-phone-3" onclick="$('#widget_name').val('c2c-phone-3'); $('#widget_code').val('xe813');preview();">&#xe813;</i>
+        <i class="c2c_icon_list c2c-phone-1" onclick="$('#widget_name').val('c2c-phone-1'); $('#widget_code').val('xe806');preview();">&#xe806;</i>
+        <i class="c2c_icon_list c2c-phone-outline" onclick="$('#widget_name').val('c2c-phone-outline'); $('#widget_code').val('xe807');preview();">&#xe807;</i>
+		<i class="c2c_icon_list c2c-phone-2" onclick="$('#widget_name').val('c2c-phone-2'); $('#widget_code').val('xe808');preview();">&#xe808;</i>		
+		<i class="c2c_icon_list c2c-sort-numeric" onclick="$('#widget_name').val('c2c-sort-numeric'); $('#widget_code').val('xe80a');preview();">&#xe80a;</i>
+        <i class="c2c_icon_list c2c-sort-numeric-outline" onclick="$('#widget_name').val('c2c-sort-numeric-outline'); $('#widget_code').val('xe809');preview();">&#xe809;</i>		
 	</p>
 	<p>	
-		<i class="c2c_icon_list c2c-bell-1" onclick="$('#result').attr('class','c2c_ir c2c-bell-1').html('&#xe811;');">&#xe811;</i>
-        <i class="c2c_icon_list c2c-bell" onclick="$('#result').attr('class','c2c_ir c2c-bell').html('&#xe803;');">&#xe803;</i>
-        <i class="c2c_icon_list c2c-bell-alt" onclick="$('#result').attr('class','c2c_ir c2c-bell-alt').html('&#xe804;');">&#xe804;</i> 
-        <i class="c2c_icon_list c2c-rocket" onclick="$('#result').attr('class','c2c_ir c2c-rocket').html('&#xe805;');">&#xe805;</i>
-        <i class="c2c_icon_list c2c-mobile-1" onclick="$('#result').attr('class','c2c_ir c2c-mobile-1').html('&#xe80e;');">&#xe80e;</i>
-        <i class="c2c_icon_list c2c-mobile" onclick="$('#result').attr('class','c2c_ir c2c-mobile').html('&#xe80b;');">&#xe80b;</i>
-        <i class="c2c_icon_list c2c-mobile-alt" onclick="$('#result').attr('class','c2c_ir c2c-mobile-alt').html('&#xe80c;');">&#xe80c;</i>
-		<i class="c2c_icon_list c2c-fax" onclick="$('#result').attr('class','c2c_ir c2c-fax').html('&#xe802;');">&#xe802;</i> 
-        <i class="c2c_icon_list c2c-calendar" onclick="$('#result').attr('class','c2c_ir c2c-calendar').html('&#xe80d;');">&#xe80d;</i>
-        <i class="c2c_icon_list c2c-info-circled" onclick="$('#result').attr('class','c2c_ir c2c-info-circled').html('&#xe810;');">&#xe810;</i>
+		<i class="c2c_icon_list c2c-bell-1" onclick="$('#widget_name').val('c2c-bell-1'); $('#widget_code').val('xe811');preview();">&#xe811;</i>
+        <i class="c2c_icon_list c2c-bell"     onclick="$('#widget_name').val('c2c-bell'); $('#widget_code').val('xe803');preview();">&#xe803;</i>
+        <i class="c2c_icon_list c2c-bell-alt" onclick="$('#widget_name').val('c2c-bell-alt'); $('#widget_code').val('xe804');preview();">&#xe804;</i> 
+        <i class="c2c_icon_list c2c-rocket" onclick="$('#widget_name').val('c2c-rocket'); $('#widget_code').val('xe805');preview();">&#xe805;</i>
+        <i class="c2c_icon_list c2c-mobile-1" onclick="$('#widget_name').val('c2c-mobile-1'); $('#widget_code').val('xe80e');preview();">&#xe80e;</i>
+        <i class="c2c_icon_list c2c-mobile" onclick="$('#widget_name').val('c2c-mobile'); $('#widget_code').val('xe80b');preview();">&#xe80b;</i>
+        <i class="c2c_icon_list c2c-mobile-alt" onclick="$('#widget_name').val('c2c-mobile-alt'); $('#widget_code').val('xe80c');preview();">&#xe80c;</i>
+		<i class="c2c_icon_list c2c-fax" onclick="$('#widget_name').val('c2c-fax'); $('#widget_code').val('xe802');preview();">&#xe802;</i> 
+        <i class="c2c_icon_list c2c-calendar" onclick="$('#widget_name').val('c2c-calendar'); $('#widget_code').val('xe80d');preview();">&#xe80d;</i>
+        <i class="c2c_icon_list c2c-info-circled" onclick="$('#widget_name').val('c2c-info-circled'); $('#widget_code').val('xe810');preview();">&#xe810;</i>
 	</p>
 	
-	<p class="title">Цвет виджета</p> 
-	<p>Выберите <input type="color" name="col" onchange="$('#bg_color').val(this.value); value="#ff6666"> или введите <input type="text" onchange="$('#bg_color').val(this.value);" > </p>
-	
-	<p class="title">Цвет виджета при наведении</p>
-	<p>Выберите <input type="color" name="col" onchange="$('#hover').val(this.value); value="#ff6666"> или введите <input type="text"  onchange="$('#hover').val(this.value);"> </p>
-	<!--p><input type="button" onclick="console.log (document.getElementById('result').style.width)" value="get"></p-->
-	
-	<p class="title">Размер виджета</p> 
-	<p>Введите <input type="text" onchange="$('#widget_size').val(this.value);"></p>
-	
-	<p class="title">Анимация</p> 
-	<p>
-		<i class="c2c_icon_list c2c-phone-circled tada" onclick="$('#animation').val('tada');preview();">&#xe812;</i>
-		<i class="c2c_icon_list c2c-phone-circled scale" onclick="$('#animation').val('scale');preview();">&#xe812;</i>
-		<i class="c2c_icon_list c2c-phone-circled blink1 " onclick="$('#animation').val('scale');preview();">&#xe812;</i> 
-	</p> 
-	
-	<p class="title">Задержка появления в секундах</p> 
-	<p>Введите <input type="text" onchange="$('#start_delay').val(this.value);"></p>
-	
-	<p class="title">Задержка скрытия в секундах</p> 
-	<p>Введите <input type="text" onchange="$('#end_delay').val(this.value);"></p>
-	
-	<p class="title">Заголовок блока</p> 
-	<p>Введите <input type="text" onchange="$('#title').val(this.value);"></p>
-	
-	<p class="title">Цвет текста заголовка</p> 
-	<p>Выберите <input type="color" name="col" onchange="$('#title_text_color').val(this.value); value="#ff6666"> или введите <input type="text"  onchange="$('#title_text_color').val(this.value);"> </p>
-	
-	<p class="title">Ширина блока</p> 
-	<p>Введите <input type="text" onchange="$('#block_width').val(this.value);">
-		<select onchange="$('#width_type').val(this.value);">
-			<option value="px">Пикселей</option>
-			<option value="%">Процентов</option>
-		</select>
-	</p>
-	<p class="title">Закругление углов блока</p> 
-	<p>Введите <input type="text" onchange="$('#block_radius').val(this.value);"></p>		
-	
-	<p class="title">Цвет рамки блока</p> 
-	<p>Выберите <input type="color" name="col" onchange="$('#block_border_color').val(this.value); value="#ff6666"> или введите <input type="text"  onchange="$('#block_border_color').val(this.value);"> </p>
-	
-	<p class="title">Текст кнопки</p> 
-	<p>Введите <input type="text" onchange="$('#btn_value').val(this.value);"></p>
-    
-	<p class="title">Цвет фона кнопки</p> 	
-	<p>Выберите <input type="color" name="col" onchange="$('#btn_color').val(this.value); value="#ff6666"> или введите <input type="text"  onchange="$('#btn_color').val(this.value);"> </p>
-	
-	<p class="title">Цвет текста кнопки</p> 	
-	<p>Выберите <input type="color" name="col" onchange="$('#text_color').val(this.value); value="#ff6666"> или введите <input type="text"  onchange="$('#text_color').val(this.value);"> </p>
-	
-	<p class="title">Размер текста в блоке</p> 
-	<p>Введите <input type="text" onchange="$('#text_color').val(this.value);"></p>
-	
+	<table>
+		<tr>
+			<td colspan=1>
+				<p class="title">Цвет виджета</p> 
+			</td>
+		</tr>
+		<tr>
+			<td>	
+				<input type="color" name="col"  class="input100" id="bg_color_input_color"  onchange="$('#bg_color').val(this.value);$('#bg_color_input_text').val(this.value);preview();" value="#ff6666">
+			    &nbsp;&nbsp;
+				<input type="text" class="input100" id="bg_color_input_text" onchange="$('#bg_color').val(this.value);$('#bg_color_input_color').val(this.value);preview();" >
+			</td>
+		</tr>
+	</table>
+	<br><br>	
+	<table>
+		<tr>
+			<td colspan=1>
+				<p class="title">Цвет виджета при наведении</p>
+			</td>
+		</tr>
+		<tr>
+			<td>	
+				<input type="color" name="col" class="input100" id="hover_input_color" onchange="$('#hover').val(this.value);$('#hover_input_text').val(this.value);preview();" value="#ff6666">
+			&nbsp;&nbsp;
+				<input type="text" class="input100" id="hover_input_text" onchange="$('#hover').val(this.value);$('#hover_input_color').val(this.value);preview();">
+			</td>
+		</tr>
+	</table>
+	<br><br>			
+	<table>
+		<tr>
+			<td colspan=1>
+				<p class="title">Размер виджета</p> 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<select class="input100"  id="ws_input_select"  onchange="$('#widget_size').val(this.value);$('#ws_input_text').val(this.value);preview();">
+					<option value=""></option>
+					<option value="24">24</option>
+					<option value="36">36</option>
+					<option value="48">48</option>
+					<option value="60">60</option>
+					<option value="72">72</option>
+					<option value="84">84</option>
+				</select>
+			&nbsp;&nbsp;
+				<input type="text" class="input100" id="ws_input_text"  onchange="$('#widget_size').val(this.value);preview();">
+			</td>
+		</tr>
+	</table>
+	<br><br>		
+	<table>
+		<tr>
+			<td>
+				<p class="title">Анимация</p> 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<br><br>
+				<i class="c2c_icon_list c2c-phone-circled" onclick="$('#animation').val('');preview(); ">&#xe812;</i>&nbsp;&nbsp;&nbsp;
+				<i class="c2c_icon_list c2c-phone-circled tada" onclick="$('#animation').val('tada');preview();">&#xe812;</i>&nbsp;&nbsp;&nbsp;
+				<i class="c2c_icon_list c2c-phone-circled scale" onclick="$('#animation').val('scale');preview();">&#xe812;</i>&nbsp;&nbsp;&nbsp;
+				<i class="c2c_icon_list c2c-phone-circled blink1 " onclick="$('#animation').val('scale');preview();">&#xe812;</i> &nbsp;&nbsp;&nbsp;
+				<br><br>	
+			</td>
+		</tr>
+	</table>
+	<br><br>		
+	<table>
+		<tr>
+			<td colspan=1>
+				<p class="title">Задержка появления </p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<select class="input100" onchange="$('#start_delay').val(this.value);"   onchange="$('#start_delay').val(this.value);$('#start_delay_text').val(this.value);preview();">
+					<option value="">сразу</option>
+					<option value="3">3 секунды</option>
+					<option value="5">5 секунд</option>
+					<option value="15">15 секунд</option>
+					<option value="30">30 секунд</option>
+					<option value="60">1 минута</option>
+				</select>
+			&nbsp;&nbsp;
+				<input type="text" class="input100"  id="start_delay_text" onchange="$('#start_delay').val(this.value);preview();">  секунд
+			</td>
+		</tr>
+	</table>
+	<br><br>	
+	<table>
+		<tr>
+			<td colspan=1>
+				<p class="title">Задержка скрытия</p> 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<select class="input100" onchange="$('#end_delay').val(this.value);$('#end_delay_text').val(this.value);preview();">
+					<option value="">никогда</option>
+					<option value="30">30 секунд</option>
+					<option value="60">1 минута</option>
+					<option value="180">3 минуты</option>
+					<option value="300">5 минут</option>
+					<option value="600">10 минут</option>
+				</select>
+			&nbsp;&nbsp;
+				<input type="text" class="input100"  id="end_delay_text"  onchange="$('#end_delay').val(this.value);preview();"> секунд
+			</td>
+		</tr>
+	</table>
+	<br><br>	
+	<table>
+		<tr>
+			<td>
+				<p class="title">Заголовок блока</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="text" class="input210" onchange="$('#title').val(this.value);preview();c2c_switch();">
+			</td>
+		</tr>
+	</table>
+	<br><br>	
+	<table>
+		<tr>
+			<td colspan=1>
+				<p class="title">Цвет текста заголовка</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="color" name="col" class="input100" onchange="$('#title_text_color').val(this.value); value="#ff6666"> 
+			&nbsp;&nbsp;
+				<input type="text"  class="input100" onchange="$('#title_text_color').val(this.value);">
+			</td>
+		</tr>
+	</table>
+	<br><br>	
+	<table>
+		<tr>
+			<td colspan=1>
+				<p class="title">Ширина блока</p> 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="text" class="input100" onchange="$('#block_width').val(this.value);">
+			&nbsp;&nbsp;
+				<select onchange="$('#width_type').val(this.value);" class="input100">
+					<option value="px">Пикселей</option>
+					<option value="%">Процентов</option>
+				</select>
+			</td>
+		</tr>
+	</table>
+	<br><br>	
+	<table>
+		<tr>
+			<td colspan=1>
+				<p class="title">Закругление углов блока</p> 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<select class="input100" onchange="$('#block_radius').val(this.value);">
+					<option value="" selected></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="5">5</option>
+					<option value="10">10</option>
+					<option value="15">15</option>
+					<option value="20">20</option>
+					<option value="25">25</option>
+				</select>
+			&nbsp;&nbsp;
+				<input type="text" class="input100" onchange="$('#block_radius').val(this.value);">
+			</td>
+		</tr>
+	</table>
+	<br><br>
+	<table>
+		<tr>
+			<td colspan=1>
+				<p class="title">Цвет рамки блока</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="color" name="col" class="input100" onchange="$('#block_border_color').val(this.value); value="#ff6666">
+			&nbsp;&nbsp;
+				<input type="text" class="input100"  onchange="$('#block_border_color').val(this.value);">
+			</td>
+		</tr>
+	</table>
+	<br><br>
+	<table>
+		<tr>
+			<td>
+				<p class="title">Текст кнопки</p> 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="text" class="input210" onchange="$('#btn_value').val(this.value);">
+			</td>
+		</tr>
+	</table>
+	<br><br>
+	<table>
+		<tr>
+			<td colspan=1>
+				<p class="title">Цвет фона кнопки</p> 	
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="color" name="col" class="input100" onchange="$('#btn_color').val(this.value); value="#ff6666">
+			&nbsp;&nbsp;
+				<input type="text" class="input100" onchange="$('#btn_color').val(this.value);">
+			</td>
+		</tr>
+	</table>
+	<br><br>
+	<table>
+		<tr>
+			<td colspan=1>
+				<p class="title">Цвет текста кнопки</p> 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="color" name="col" class="input100" onchange="$('#text_color').val(this.value); value="#ff6666">
+			&nbsp;&nbsp;
+				<input type="text"  class="input100" onchange="$('#text_color').val(this.value);">
+			</td>
+		</tr>
+	</table>
+	<br><br>
+	<table>
+		<tr>
+			<td colspan=1>
+				<p class="title">Размер текста в блоке</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<select class="input100" onchange="$('#text_color').val(this.value);">
+					<option value="" selected></option>
+					<option value="6">6</option>
+					<option value="8">8</option>
+					<option value="10">10</option>
+					<option value="12">12</option>
+					<option value="14">14</option>
+					<option value="16">16</option>
+					<option value="18">18</option>
+					<option value="20">20</option>
+				</select>
+			&nbsp;&nbsp;
+				<input type="text" class="input100" onchange="$('#text_color').val(this.value);">
+			</td>
+		</tr>
+	</table>
+	<br><br>
 	<table ><tr><td colspan=3><p class="title">Время работы </p> </td></tr>
 	<tr><td>
 	Понедельник:</td><td> c <select id="mo_from"  onchange="worktime('mo');">
@@ -601,6 +918,7 @@
 	<p class="title">Выбор</p>
 	<p>Виджет</p>
 	<p ><i id="result" ></i></p>
+	<p></p>
  </div>
 	  
 

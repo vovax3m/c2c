@@ -189,8 +189,7 @@
 		-webkit-animation: blink1 2.5s linear infinite;
 	    -moz-animation: blink1 2.5s linear infinite;
 	    animation: blink1 2.5s linear infinite;
-		color: rgb(239, 68, 68);
-	    text-shadow: 5px 5px 5px 5px rgba(239, 68, 68, 0.75);
+		
 	}
 	/*ANIMATE PHONE ICO*/
 	@-webkit-keyframes tada {
