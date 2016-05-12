@@ -23,6 +23,8 @@ pre{
 	color:#016CB0;
 	float:none;
 	vertical-align:top;
+	margin:15px;
+	padding:15px;
 }
 #header{	
 	background: linear-gradient(to top, #ffffff, #a8ada8);
@@ -195,7 +197,7 @@ label{
 	font-family: "Play";
 }
 table{
-	width: 50%;
+	/*width: 50%;*/
 	font-size: 18px;
 	font-family: "Play";
 	/*border: 1px solid #ccc;*/
