@@ -1,7 +1,3 @@
-
-<div align="center"><a href="http://c2c.sip64.ru/call/help" class="c2c_submit">api help</a> <a href="http://c2c.sip64.ru/call/help/form" class="c2c_submit">form help</a> <a href="http://c2c.sip64.ru/call/help/contact" class="c2c_submit">contact us</a></div>
-<div class="left">
-	<div align="center" style="font-family:Play, sans-serif;border:0px solid red;margin:10px;padding:10px;">
 <script>
 	function worktime(day){
 		var from=$('#'+day+'_from').val();
@@ -119,10 +115,11 @@
 					font-size: ' + font_size + ' !important; \
 				} ';
 	  
-	  var content='<i title="'+title+'" id="c2c_push" onclick="c2c_switch();"  class="c2c_widget '+$('#widget_name').val()+' '+$('#animation').val()+ ' ">&#'+ $('#widget_code').val() + ';</i><div id="c2c_block" class="c2c_block " style="display:none" align="center"><div  onclick="c2c_switch();" style="top: 2px;right: 2px;position:absolute;cursor: pointer;font-size:'+font_size+'px !important;color: '+ title_text_color +' !important;" title="закрыть" >x</div><table class="c2c_table" align="center"><tr><td colspan="3" align="center" ><span id="c2c_title" class="c2c_title">'+title+'</span></td></tr><tr><td><div contenteditable="true" class="c2c_number" id="c2c_number" ></div></td><td><div class="c2c_submit"  onclick="alert($(\'#c2c_number\').text());">'+btn_value+'</div></td></tr></table><br><div id="c2c_status"></div></div>';
-	  
-	  $('body').append(content);
+	  var content='<i title="'+title+'" id="c2c_push" onclick="c2c_switch();" class="c2c_widget '+$('#widget_name').val()+' '+$('#animation').val()+ ' ">&#'+ $('#widget_code').val() + ';</i><div id="c2c_block" class="c2c_block " style="display:none" align="center"><div  onclick="c2c_switch();" style="top: 2px;right: 2px;position:absolute;cursor: pointer;font-size:'+font_size+'px !important;color: '+ title_text_color +' !important;" title="закрыть" >x</div><table class="c2c_table" align="center"><tr><td colspan="3" align="center" ><span id="c2c_title" class="c2c_title">'+title+'</span></td></tr><tr><td><div contenteditable="true" class="c2c_number" id="c2c_number" ></div></td><td><div class="c2c_submit"  onclick="alert($(\'#c2c_number\').text());">'+btn_value+'</div></td></tr></table><br><div id="c2c_status"></div></div>';
+	  $('#c2c_push').remove();	
+	  $('#c2c_block').remove();
 	  $('#c2c_widget').remove();	
+	  $('#c2c_drag').html(content);
 	  $('<style type="text/css" id="c2c_widget">' + style + '</style>').appendTo('head');	
 	}
 	$('<link rel="stylesheet" href="/css/animation/tada.css">').appendTo('head');
@@ -132,8 +129,24 @@
 	function c2c_show(){ 	$("#c2c_push").show();	}
 	function c2c_hide(){	$("#c2c_push").hide();	}
 	function c2c_toggle(){$("#c2c_options").toggle();	}
-	function c2c_switch(){ $("#c2c_push").toggle();$("#c2c_block").toggle();}
+	function c2c_switch(){ console.log("c2c_switch"); $("#c2c_push").toggle();$("#c2c_block").toggle();}
+	function get_coordinates(){
+	    //$("#c2c_push").prop('onclick', 'console.log("1")');
+		 var left=$('#c2c_drag').css('left');
+		 var top=$('#c2c_drag').css('top');
+		 var screenH=$(document).height();
+		 var screenW=$(document).width();
+		 console.log(screenH+ ' / '+ screenW + ' L= '+ left + 'T=' + top);
+	//	$("#c2c_block").show();
+	//	$("#c2c_block").hide();
+	} 
+	//" 
 </script>
+ <div id="c2c_drag" ondrag="get_coordinates();" ondrop="console.log('123')"  ></div>
+<div align="center"><a href="http://c2c.sip64.ru/call/help" class="c2c_submit">api help</a> <a href="http://c2c.sip64.ru/call/help/form" class="c2c_submit">form help</a> <a href="http://c2c.sip64.ru/call/help/contact" class="c2c_submit">contact us</a></div>
+<div class="left">
+	<!--div align="center" style="font-family:Play, sans-serif;border:0px solid red;margin:10px;padding:10px;"--> 
+
 <table>
 		<tr>
 			<td colspan=3 align="center"class="title">
@@ -282,6 +295,10 @@
 				<input type="text" class="input100"  id="position_right_text"  onchange="$('#position_right').val(this.value);preview();$('#position_right_range').val(this.value);$('#position_left').val(0);$('#position_left_text').val(0);$('#position_left_range').val(0);">
 			</td>
 			</tr>
+		</table>
+	</div>
+	<div class="right">
+		<table>
 			<tr>
 			<td colspan=3 align="center"class="title">
 				Настройка окна виджета
@@ -902,11 +919,6 @@
 		<input type="submit" name="submit" value="Сохранить">
 	</form>
  </div>
- <div class="right">
-	<p >Выбор</p>
-	<p>Виджет</p>
-	<p ><i id="result" ></i></p>
-	<p></p>
- </div>
+ 
 	  
 
