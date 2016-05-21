@@ -195,6 +195,12 @@ table{
 	font-size: 18px;
 	font-family: "Play";
 	text-align:center;
+	 border-collapse: collapse;
+}
+table td{
+	border: 1px solid #ccc;
+	padding: 0px;
+	margin:0px;
 }
 .lefthead{
 	padding-top:5px;

@@ -300,7 +300,7 @@
 	<div class="right">
 		<table>
 			<tr>
-			<td colspan=3 align="center"class="title">
+			<td colspan=2 align="center"class="title">
 				Настройка окна виджета
 			</td>
 		</tr>
