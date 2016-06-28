@@ -1,5 +1,5 @@
 var $=jQuery;
-var content='<i title="<?php echo $title;?>" id="c2c_push" onclick="c2c_switch();" <?php if($start_delay):?>style="display:none"<?php endif;?> class="c2c_widget <?php echo $widget_name; ?> <?php echo $animation; ?> ">&#<?php echo $widget_code; ?>;</i><div id="c2c_block" class="c2c_block " style="display:none" align="center"><div class="c2c_table" align="center"><div class="c2c_table_row" align="center" ><span id="c2c_title" class="c2c_title"><?php echo $title?></span></div><div class="c2c_table_row"><div class="c2c_table_col" align="center" ><div  contenteditable="true" class="c2c_number" id="c2c_number" title="74951234567"></div></div><div class="c2c_table_col" align="center" ><?php if($call_icon):?><i onclick="c2c_call();" class="c2c_button_icon <?php echo $call_icon; ?>">&#<?php echo $call_code; ?>;</i><?php else:?><div class="c2c_submit"  onclick="c2c_call();"><?php echo $btn_value; ?></div><?php endif;?></div></div></div><div id="c2c_status"></div><span onclick="c2c_switch();" class="c2c_close" title="закрыть">x</span></div>';
+var content='<i title="<?php echo $title;?>" id="c2c_push" onclick="c2c_switch();" <?php if($start_delay):?>style="display:none"<?php endif;?> class="c2c_widget <?php echo $widget_name; ?> <?php echo $animation; ?> ">&#<?php echo $widget_code; ?>;</i><div id="c2c_block" class="c2c_block " style="display:none" align="center"><div class="c2c_table" align="center"><div class="c2c_table_row" align="center" ><span id="c2c_title" class="c2c_title"><?php echo $title?></span></div><div class="c2c_table_row"><div class="c2c_table_col" align="center" ><div  contenteditable="true" class="c2c_number" id="c2c_number" title="74951234567" placeholder="89011231234"></div></div><div class="c2c_table_col" align="center" ><?php if($call_icon):?><i onclick="c2c_call();" class="c2c_button_icon <?php echo $call_icon; ?>">&#<?php echo $call_code; ?>;</i><?php else:?><div class="c2c_submit"  onclick="c2c_call();"><?php echo $btn_value; ?></div><?php endif;?></div></div><div class="c2c_table_row" align="center" ><span id="c2c_text" class="c2c_text"><?php echo $custom_text?></span></div></div><div id="c2c_status"></div><span onclick="c2c_switch();" class="c2c_close" title="закрыть">x</span></div>';
  
  /*
  <td><span class="c2c_opt_span" onclick="c2c_toggle();"><i class="c2c_gear_6 spin">&#xe803;</i></span></td><div id="c2c_options" style="display:none" class="c2c_options "><br>additionals <select id="c2c_day"></select></div><br>
@@ -36,6 +36,7 @@ var content='<i title="<?php echo $title;?>" id="c2c_push" onclick="c2c_switch()
 	//styles
 	
      var style =" \
+	            [contenteditable=true]:empty:before {content: attr(placeholder);display: block;} \
 				.c2c_close{ \
 					top: 5px; \
 					right: 5px; \
@@ -45,7 +46,7 @@ var content='<i title="<?php echo $title;?>" id="c2c_push" onclick="c2c_switch()
 					position: absolute; \
 				} \
 				.c2c_title{ \
-					font-size: <?php echo $font_size;?>px ; \
+					font-size: <?php echo $title_font_size;?>px ; \
 					color: <?php echo $title_text_color;?> ; \
 				} \
 				.c2c_options{ \
@@ -82,7 +83,7 @@ var content='<i title="<?php echo $title;?>" id="c2c_push" onclick="c2c_switch()
 					border: 1px solid black ; \
 					background: <?php echo $btn_color;?> ; \
 					border-radius: 2px ; \
-					font-size: <?php echo $font_size;?> ; \
+					font-size: <?php echo $font_size;?>px ; \
 					color: <?php echo $text_color;?> ; \
 					margin: 5px ; \
 					padding: 5px ; \
@@ -102,10 +103,10 @@ var content='<i title="<?php echo $title;?>" id="c2c_push" onclick="c2c_switch()
 					background: white ;\
 					border: 1px solid black ; \
 					border-radius: 2px ; \
-					width: "+$('#c2c_block').width()+"px ; \
+					width: <?php echo $number_width;?>px ; \
 					margin: 5px ; \
 					padding: 5px ; \
-					font-size: <?php echo $font_size;?> ; \
+					font-size: <?php echo $font_size;?>px ; \
 				} \
 				@font-face {font-family: 'c2c-gear';src: url('http://<?php echo $domain;?>/css/font/c2c-gear.eot?8963093');src:local('c2c'), url('http://<?php echo $domain;?>/css/font/c2c-gear.eot?8963093#iefix') format('embedded-opentype'),url('http://<?php echo $domain;?>/css/font/c2c-gear.woff?8963093')format('woff'),url('http://<?php echo $domain;?>/css/font/c2c-gear.ttf?8963093')format('truetype'),url('http://<?php echo $domain;?>/css/font/c2c-gear.svg?8963093#c2c-gear') format('svg');} \
 				@font-face {font-family: 'c2c';	src: url('http://<?php echo $domain;?>/css/font/c2c.eot?51981102');src:local('c2c'), url('http://<?php echo $domain;?>/css/font/c2c.eot?51981102#iefix') format('embedded-opentype'),url('http://<?php echo $domain;?>/css/font/c2c.woff?51981102')format('woff'),url('http://<?php echo $domain;?>/css/font/c2c.ttf?51981102')format('truetype'),url('http://<?php echo $domain;?>/css/font/c2c.svg?51981102#c2c') format('svg');} \

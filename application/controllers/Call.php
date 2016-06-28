@@ -55,6 +55,11 @@ class Call extends CI_Controller {
 			// получаем данные по данному ключу
 			$this->load->model('call_model');
 			$r=$this->call_model->get($key);
+			$settings=$this->call_model->get_settings($key);
+			foreach($settings as $v){
+				$sett[$v['param_key']]=$v['param_value'];
+			}
+			 
 			// получили ответ от базы
 			if(@$r[0]['id']){
 				// проверяем привязку по ip 0.0.0.0 -разрешены все
@@ -62,7 +67,7 @@ class Call extends CI_Controller {
 				if($_SERVER['REMOTE_ADDR']==$pip or $pip=='0.0.0.0'){
 					// формируем запрос на ватс
 					$arrContextOptions=array("ssl"=>array("verify_peer"=>false,"verify_peer_name"=>false,),);  
-					$f=file_get_contents('http://91.196.5.205/c2c/call.php?a='.$r[0]['rgroup'].'&b='.$nomer.'&c='.$r[0]['trunk'].'&order=1', false, stream_context_create($arrContextOptions));
+					$f=file_get_contents('http://91.196.5.205/c2c/call.php?a='.$r[0]['rgroup'].'&b='.$nomer.'&c='.$r[0]['trunk'].'&order='.$sett['call_order'], false, stream_context_create($arrContextOptions));
 					//если есть ответ от сервера
 					if($f=='ok'){
 						

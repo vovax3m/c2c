@@ -1,0 +1,89 @@
+html,body{
+	margin:0;
+	padding:0;
+	font-family: 'Play', sans-serif;
+	height:100%;
+}
+#pagewidth{
+	height:100%;
+	width:100%;
+	display:table;
+}
+#header{	
+	background: linear-gradient(to top, #ffffff, #a8ada8);
+	width:100%;
+	display:table;
+	overflow:auto;
+}
+.title{
+	font-size:25px ;
+	color:#016CB0;
+	float:none;
+	vertical-align:top;
+	
+}
+
+.hand{
+	cursor:pointer;
+}
+
+.loginform{
+	width:300px;
+	height:30px;
+	/*font-size:16px;*/
+	border:1px solid #ccc;
+	border-radius:2px;
+	padding:1px 1px 1px;
+	outline:0;
+	font-size: 18px;
+	font-family: 'Play', sans-serif;
+}
+
+label{
+    font-size:18px ;	
+}
+
+.arrow_right{
+	color:#016CB0;
+}
+
+.temp {
+	font-size:25px ;
+	color:#f27f15;
+	align:center;
+} 
+
+.minititle{
+	font-size:25px ;
+	color:#f27f15;
+	text-align:center;
+} 
+
+.admin_table{
+	border-collapse: collapse;
+}
+.admin_table td { 
+	font-size: 14px;
+	text-align: center;
+	border: 0px solid  #ccc;
+	margin: 5px;
+}
+.table_header {
+    font-size:18px !important;
+	color:#f27f15;
+	align:center;
+	padding: 5px;
+}
+.lefthead{
+	padding-top:5px;
+	padding-left:5px;
+	position:relative;
+	float:left;
+}
+.righthead{
+	margin:0px;
+	padding:2px;
+	position:relative;
+	float:right;
+	
+}

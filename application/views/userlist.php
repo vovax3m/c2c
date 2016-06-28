@@ -1,8 +1,8 @@
 
 
 <!--  ADD -->
-<span title="Добавить" class="title hand" onclick="$('#addform').toggle('100')">Добавить </span>  <span class="title" style="display:none" id="editspan"> / <span title="Изменить" class="title hand" onclick="$('#editform').toggle('100')" >Редактировать</span>  </span>
-  <span class="title">пользователя</span>
+<span title="Добавить" class="title hand" onclick="$('#addform').toggle('100');$('#editform').hide();">Добавить </span>  <span class="title" style="display:none" id="editspan"> / <span title="Изменить" class="title hand" onclick="$('#editform').toggle('100');$('#addform').hide();" >Редактировать</span>  </span>
+  <span class="title"> пользователя</span>
 <div id="addform" style="display:none" >
 	<form action="/admin/useradd/" method="POST">
 		<table>
@@ -38,7 +38,7 @@
 
 <div id="editform" style="display:none" >
 	<form action="/admin/useredit/" method="POST">
-		<table>
+		<table >
 			<tr>
 				<td align="left">
 					
@@ -86,33 +86,33 @@
 
 <br>
 
-<table>
-<tr class="minititle">
-		<td>
+<table class="admin_table">
+<tr>
+		<td class="table_header">
 			Название
 		</td>
-		<td>
+		<td class="table_header">
 			Группа
 		</td>
-		<td>
+		<td class="table_header">
 			Транк
 		</td>
-		<td>
+		<td class="table_header">
 			Ключ
 		</td>
-		<td>
+		<td class="table_header">
 			Активен
 		</td>
-		<td>
+		<td class="table_header">
 			привязка IP
 		</td>
-		<td>
+		<td class="table_header">
 			Звонки за день
 		</td>
-		<td>
+		<td class="table_header">
 			Управление
 		</td>
-		<td>
+		<td class="table_header">
 			Строка вызова
 		</td>
 	</tr>
@@ -149,9 +149,9 @@ foreach($users as $user):
 			<input type="hidden"  id="hcounter<?php echo $user['id']; ?>" value="<?php echo $user['counter']; ?>">
 		</td>
 		<td>
-			<span class="hand" onclick="edit('<?php echo $user['id']; ?>')">изменить</span>  / <span class="hand" onclick="del('<?php echo $user['id']; ?>')">удалить</span>
+			<span class="hand" onclick="edit('<?php echo $user['id']; ?>');$('#addform').hide();">изменить</span>  / <span class="hand" onclick="del('<?php echo $user['id']; ?>')">удалить</span>
 		</td>
-		<td><span class="hand" data-clipboard-target="#link<?php echo $user['id']; ?>" id="button<?php echo $user['id']; ?>"> в буфер  </span> 
+		<td><span class="hand" data-clipboard-target="#link<?php echo $user['id']; ?>" id="button<?php echo $user['id']; ?>">    в буфер  </span> 
 			<input type="text" id="link<?php echo $user['id']; ?>"  class="loginform"  value="http://c2c.sip64.ru/call/make/78452740740?key=<?php echo $user['apikey']; ?>">
 			<script> new Clipboard('#button<?php echo $user['id']; ?>'); </script>
 		</td>

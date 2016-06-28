@@ -20,6 +20,7 @@ class Admin extends CI_Controller {
 	}
 	
 	function useradd(){
+	//INSERT INTO settings (`user_id`, `param_key`, `param_value`) SELECT 7 as user_id, param_key,param_value FROM `default_settings`
 		$name=$this->input->post('name');
 		$group=$this->input->post('group');
 		$trunk=$this->input->post('trunk');
