@@ -1,5 +1,7 @@
 var $=jQuery;
-var content='<i title="<?php echo $title;?>" id="c2c_push" onclick="c2c_switch();" <?php if($start_delay):?>style="display:none"<?php endif;?> class="c2c_widget <?php echo $widget_name; ?> <?php echo $animation; ?> ">&#<?php echo $widget_code; ?>;</i><div id="c2c_block" class="c2c_block " style="display:none" align="center"><div class="c2c_table" align="center"><div class="c2c_table_row" align="center" ><span id="c2c_title" class="c2c_title"><?php echo $title?></span></div><div class="c2c_table_row"><div class="c2c_table_col" align="center" ><div  contenteditable="true" class="c2c_number" id="c2c_number" title="74951234567" placeholder="89011231234"></div></div><div class="c2c_table_col" align="center" ><?php if($call_icon):?><i onclick="c2c_call();" class="c2c_button_icon <?php echo $call_icon; ?>">&#<?php echo $call_code; ?>;</i><?php else:?><div class="c2c_submit"  onclick="c2c_call();"><?php echo $btn_value; ?></div><?php endif;?></div></div><div class="c2c_table_row" align="center" ><span id="c2c_text" class="c2c_text"><?php echo $custom_text?></span></div></div><div id="c2c_status"></div><span onclick="c2c_switch();" class="c2c_close" title="закрыть">x</span></div>';
+var content='<i title="<?php echo $title;?>" id="c2c_push" onclick="c2c_switch();" <?php if($start_delay):?>style="display:none"<?php endif;?> class="c2c_widget <?php echo $widget_name; ?> <?php echo $animation; ?> ">&#<?php echo $widget_code; ?>;</i><div id="c2c_block" class="c2c_block " style="display:none" align="center"><div class="c2c_table" align="center"><div class="c2c_table_row" align="center" ><span id="c2c_title" class="c2c_title"><?php echo $title?></span></div><div class="c2c_table_row"><div class="c2c_table_col" align="center" ><div  contenteditable="true" class="c2c_number" id="c2c_number" title="89011231234" placeholder="89011231234"></div></div><div class="c2c_table_col" align="center" ><?php if($call_icon):?><i onclick="c2c_call();" class="c2c_button_icon <?php echo $call_icon; ?>">&#<?php echo $call_code; ?>;</i><?php else:?><div class="c2c_submit"  onclick="c2c_call();"><?php echo $btn_value; ?></div><?php endif;?></div></div><div class="c2c_table_row" align="center" ><span id="c2c_text" class="c2c_text"><?php echo $custom_text?></span></div></div><div id="c2c_status"></div><span onclick="c2c_switch();" class="c2c_close" title="закрыть">x</span></div>';
+ 
+
  
  /*
  <td><span class="c2c_opt_span" onclick="c2c_toggle();"><i class="c2c_gear_6 spin">&#xe803;</i></span></td><div id="c2c_options" style="display:none" class="c2c_options "><br>additionals <select id="c2c_day"></select></div><br>
@@ -36,7 +38,7 @@ var content='<i title="<?php echo $title;?>" id="c2c_push" onclick="c2c_switch()
 	//styles
 	
      var style =" \
-	            [contenteditable=true]:empty:before {content: attr(placeholder);display: block;} \
+	            [contenteditable=true]:empty:before {content: attr(placeholder);display: block; color:#ccc} \
 				.c2c_close{ \
 					top: 5px; \
 					right: 5px; \
@@ -87,7 +89,7 @@ var content='<i title="<?php echo $title;?>" id="c2c_push" onclick="c2c_switch()
 					color: <?php echo $text_color;?> ; \
 					margin: 5px ; \
 					padding: 5px ; \
-					width: "+$('#c2c_block').width()+"px ; \
+					width: <?php echo $button_width;?>px ; \
 					cursor: pointer; \
 				} \
 				.c2c_opt_span{ \
@@ -144,20 +146,41 @@ var content='<i title="<?php echo $title;?>" id="c2c_push" onclick="c2c_switch()
 			
 	 $('<style type="text/css">' + style + '</style>').appendTo('head');
 //	$('<style type="text/css">' + style + '</style>').insertAfter('body');
-	$('<link rel="stylesheet" href="http://c2c.sip64.ru/css/animation/<?php echo $animation; ?>.css">').appendTo('head');
+	$('<link rel="stylesheet" href="http://<?php echo $domain ?>/css/animation/<?php echo $animation; ?>.css">').appendTo('head');
 	
 });
 
 function c2c_call(){
-		var no=$("#c2c_number").text();
+		var no=$("#c2c_number").text().replace('+','');
 		var key='<?php echo $key;?>';
 		var headID = document.getElementsByTagName("head")[0]; 
 		var newScript = document.createElement('script');
 		newScript.type = 'text/javascript';
-		newScript.src = 'http://c2c.sip64.ru/call/make/'+no+'?form=1&key='+key+'&cb=<?php if($callback) echo $callback;?>';
+		newScript.src = 'http://<?php echo $domain ?>/call/make/'+no+'?form=1&key='+key+'&cb=<?php if($callback) echo $callback;?>';
 		headID.appendChild(newScript);
 		headID.removeChild(newScript);
-
+		
+}
+function c2c_set_status(code){
+	var count_timer = <?php echo $countdown; ?>;
+	if (count_timer  && code == 'OK' ) countdown();
+	
+	switch(code) {
+		case 'NOT_DIGITAL':
+			$('#c2c_title').html("<?php echo $ERR_NOT_DIGITAL; ?>");
+			break;
+		case 'WRONG_LENGHT':  
+			$('#c2c_title').html("<?php echo $ERR_WRONG_LENGHT; ?>");
+			break;
+		case 'WRONG_CCODE': 
+			$('#c2c_title').html("<?php echo $ERR_WRONG_CCODE; ?>");
+			break;
+		case 'NOT_DEFINED':  
+			$('#c2c_title').html("<?php echo $ERR_NOT_DEFINED; ?>");
+			break;
+	 }
+		//setTimeout(function() {
+		//}, 200);	
 }
 function c2c_cb(){
 	console.log(data)
@@ -182,5 +205,17 @@ function c2c_switch(){
 		$("#c2c_push").toggle();
 		$("#c2c_block").toggle();
 
+}
+function countdown(){
+   $("#c2c_status_code").val('');
+	var timer =<?php echo $countdown ?>;;
+	var timerId = setInterval(function() {
+		$('#c2c_title').html('<?php echo $wait_call ?> '+ timer+' сек.');
+		if (timer == 0) {
+			clearInterval(timerId);
+			$('#c2c_title').html('<?php echo $timeout_message ?>');
+		}
+		timer = timer -1;
+	}, 1000);
 }
 

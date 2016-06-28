@@ -13,33 +13,34 @@ class Call extends CI_Controller {
 		
 		$key=$this->input->get('key'); // api key
 		$form=$this->input->get('form'); // diffent answers when form
-		$cb=($this->input->get('cb'))? $this->input->get('cb'):'c2c_status'; //callback element
+		$cb=($this->input->get('cb')) ? $this->input->get('cb') : 'c2c_status'; //callback element
 		//проверка существовования параметра номер
 		if($nomer){
 			// провека  номера на отстутствие букв
 			if(!is_numeric($nomer)){
 				$status['error'][]='number is not digital';
-				echo ($form)? ' $("#'.$cb.'").html("'.@$status['error'][0].'");' : json_encode($status);
+				echo ($form)? 'c2c_set_status("NOT_DIGITAL");' : json_encode($status);
+				
 				$this->log('',$nomer,$status);
 				exit;
 			}
 			// проверяем длину номера
 			if(strlen($nomer)!=11) {
 				$status['error'][]='Wrong number length';
-				echo ($form)? ' $("#'.$cb.'").html("'.@$status['error'][0].'");' : json_encode($status);
+				echo ($form)? 'c2c_set_status("WRONG_LENGHT")' : json_encode($status);
 				$this->log('',$nomer,$status);
 				exit;
 			}
 			if($nomer[0]!='7' and $nomer[0]!='8') {
 				$status['error'][]='Number should to begin from 7 or 8';
-				echo ($form)? ' $("#'.$cb.'").html("'.@$status['error'][0].'");' : json_encode($status);
+				echo ($form)? 'c2c_set_status("WRONG_CCODE");' : json_encode($status);
 				$this->log('',$nomer,$status);
 				exit;
 			}
 		// при отстутствии номера
 		}else{
 			$status['error'][]='Not defined number';
-			echo ($form)? ' $("#'.$cb.'").html("'.@$status['error'][0].'");' : json_encode($status);
+			echo ($form)? 'c2c_set_status("NOT_DEFINED");' : json_encode($status);
 			
 			$this->log('','',$status);
 			exit;			
@@ -59,7 +60,6 @@ class Call extends CI_Controller {
 			foreach($settings as $v){
 				$sett[$v['param_key']]=$v['param_value'];
 			}
-			 
 			// получили ответ от базы
 			if(@$r[0]['id']){
 				// проверяем привязку по ip 0.0.0.0 -разрешены все
@@ -75,7 +75,7 @@ class Call extends CI_Controller {
 						$i=$this->call_model->edit($r[0]['id'],$data);
 						if($form){
 							//echo ' $(function(){$("#callback").html("success");});';
-							echo ' $("#'.$cb.'").html("success");';
+							echo 'c2c_set_status("OK");';
 							
 						}else{
 							$status['ok'][]='calling '.$nomer; 
@@ -85,7 +85,8 @@ class Call extends CI_Controller {
 					$status['error'][]='your request not permitted';
 				}
 			// если в базе не нашлось ничего
-			}else{
+			}
+			else{
 				$status['error'][]='your key are wrong or inactive';
 			}
 		
@@ -102,7 +103,7 @@ class Call extends CI_Controller {
 				echo ' $("#'.$cb.'").html("'.$status['error'][0].'");';
 			}
 		}else{
-			if($status)echo json_encode($status)	; 
+			if($status)echo json_encode($status); 
 		}
 	}
 	function log($name,$nomer,$status){
