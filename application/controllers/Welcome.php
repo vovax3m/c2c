@@ -20,7 +20,11 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{	
-		print_r($_SERVER);
+		//print_r($_SERVER);
+		$this->load->library('funcs'); 
+		echo $this->funcs->e_mail('Проверка письма с2с','Тема с2с');		
 		$this->load->view('welcome_message');
+		
+		
 	}
 }

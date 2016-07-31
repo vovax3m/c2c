@@ -1,0 +1,127 @@
+﻿.hang{
+  animation: hang ease 5s;
+  animation-iteration-count: infinite;
+  transform-origin: 0% 0%;
+  animation-fill-mode:forwards; /*when the spec is finished*/
+  -webkit-animation: hang ease 5s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-transform-origin: 0% 0%;
+  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/ 
+  -moz-animation: hang ease 5s;
+  -moz-animation-iteration-count: infinite;
+  -moz-transform-origin: 0% 0%;
+  -moz-animation-fill-mode:forwards; /*FF 5+*/
+  -o-animation: hang ease 5s;
+  -o-animation-iteration-count: infinite;
+  -o-transform-origin: 0% 0%;
+  -o-animation-fill-mode:forwards; /*Not implemented yet*/
+  -ms-animation: hang ease 5s;
+  -ms-animation-iteration-count: infinite;
+  -ms-transform-origin: 0% 0%;
+  -ms-animation-fill-mode:forwards; /*IE 10+*/
+}
+
+@keyframes hang{
+  0% {
+    transform:  rotate(0deg) ;
+  }
+  20% {
+    transform:  rotate(60deg) ;
+  }
+  40% {
+    transform:  rotate(40deg) ;
+  }
+  60% {
+    transform:  rotate(54deg) ;
+  }
+  80% {
+    transform:  rotate(42deg) ;
+  }
+  100% {
+    transform:  rotate(-1deg) ;
+  }
+}
+
+@-moz-keyframes hang{
+  0% {
+    -moz-transform:  rotate(0deg) ;
+  }
+  20% {
+    -moz-transform:  rotate(60deg) ;
+  }
+  40% {
+    -moz-transform:  rotate(40deg) ;
+  }
+  60% {
+    -moz-transform:  rotate(54deg) ;
+  }
+  80% {
+    -moz-transform:  rotate(42deg) ;
+  }
+  100% {
+    -moz-transform:  rotate(-1deg) ;
+  }
+}
+
+@-webkit-keyframes hang {
+  0% {
+    -webkit-transform:  rotate(0deg) ;
+  }
+  20% {
+    -webkit-transform:  rotate(60deg) ;
+  }
+  40% {
+    -webkit-transform:  rotate(40deg) ;
+  }
+  60% {
+    -webkit-transform:  rotate(54deg) ;
+  }
+  80% {
+    -webkit-transform:  rotate(42deg) ;
+  }
+  100% {
+    -webkit-transform:  rotate(-1deg) ;
+  }
+}
+
+@-o-keyframes hang {
+  0% {
+    -o-transform:  rotate(0deg) ;
+  }
+  20% {
+    -o-transform:  rotate(60deg) ;
+  }
+  40% {
+    -o-transform:  rotate(40deg) ;
+  }
+  60% {
+    -o-transform:  rotate(54deg) ;
+  }
+  80% {
+    -o-transform:  rotate(42deg) ;
+  }
+  100% {
+    -o-transform:  rotate(-1deg) ;
+  }
+}
+
+@-ms-keyframes hang {
+  0% {
+    -ms-transform:  rotate(0deg) ;
+  }
+  20% {
+    -ms-transform:  rotate(60deg) ;
+  }
+  40% {
+    -ms-transform:  rotate(40deg) ;
+  }
+  60% {
+    -ms-transform:  rotate(54deg) ;
+  }
+  80% {
+    -ms-transform:  rotate(42deg) ;
+  }
+  100% {
+    -ms-transform:  rotate(-1deg) ;
+  }
+}

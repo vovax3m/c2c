@@ -28,6 +28,19 @@ class Call_model extends CI_Model {
 		$data['status']=$status;
 		$this->db->insert('calllog',$data);	
 	}
+	public function fb_log($name, $no, $message, $email, $key){
+		$userdata['apikey']=$key;
+		$this->db->select('id');
+		$this->db->where($userdata);
+		$uid = $this->db->get('users');
+		$row=$uid->row_array();
+		$data['user_id']=$row['id'];
+		$data['name']=$name;
+		$data['email']=$email;
+		$data['no']=$no;
+		$data['message']=$message;
+		$this->db->insert('fblog',$data);	
+	}
 	
 	public function add($name,$rgroup,$trunk,$key,$pip,$act){
 		$data['name']=$name;
