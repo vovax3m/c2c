@@ -1,0 +1,332 @@
+﻿.dance2{
+  animation: dance2 linear 10s;
+  animation-iteration-count: infinite;
+  transform-origin: 50% 50%;
+  -webkit-animation: dance2 linear 10s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-transform-origin: 50% 50%;
+  -moz-animation: dance2 linear 10s;
+  -moz-animation-iteration-count: infinite;
+  -moz-transform-origin: 50% 50%;
+  -o-animation: dance2 linear 10s;
+  -o-animation-iteration-count: infinite;
+  -o-transform-origin: 50% 50%;
+  -ms-animation: dance2 linear 10s;
+  -ms-animation-iteration-count: infinite;
+  -ms-transform-origin: 50% 50%;
+}
+
+@keyframes dance2{
+  0% {
+    transform:  rotate(0deg) scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+  10% {
+    transform:  scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+  13% {
+    transform:  scaleX(1.00) scaleY(1.00) skewY(20deg) ;
+  }
+  17% {
+    transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(-20deg) ;
+  }
+  21% {
+    transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(20deg) ;
+  }
+  24% {
+    transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+  30% {
+    transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+  33% {
+    transform:  scaleX(0.00) scaleY(1.00) ;
+  }
+  36% {
+    transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  39% {
+    transform:  scaleX(0.00) scaleY(1.00) ;
+  }
+  43% {
+    transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  47% {
+    transform:  scaleX(0.00) scaleY(1.00) ;
+  }
+  50% {
+    transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  54% {
+    transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  56% {
+    transform:  scaleX(1.20) scaleY(1.20) ;
+  }
+  60% {
+    transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  63% {
+    transform:  scaleX(1.15) scaleY(1.15) ;
+  }
+  64% {
+    transform:  scaleX(1.20) scaleY(1.20) ;
+  }
+  67% {
+    transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  100% {
+    transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+}
+
+@-moz-keyframes dance2{
+  0% {
+    -moz-transform:  rotate(0deg) scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+  10% {
+    -moz-transform:  scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+  13% {
+    -moz-transform:  scaleX(1.00) scaleY(1.00) skewY(20deg) ;
+  }
+  17% {
+    -moz-transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(-20deg) ;
+  }
+  21% {
+    -moz-transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(20deg) ;
+  }
+  24% {
+    -moz-transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+  30% {
+    -moz-transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+  33% {
+    -moz-transform:  scaleX(0.00) scaleY(1.00) ;
+  }
+  36% {
+    -moz-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  39% {
+    -moz-transform:  scaleX(0.00) scaleY(1.00) ;
+  }
+  43% {
+    -moz-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  47% {
+    -moz-transform:  scaleX(0.00) scaleY(1.00) ;
+  }
+  50% {
+    -moz-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  54% {
+    -moz-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  56% {
+    -moz-transform:  scaleX(1.20) scaleY(1.20) ;
+  }
+  60% {
+    -moz-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  63% {
+    -moz-transform:  scaleX(1.15) scaleY(1.15) ;
+  }
+  64% {
+    -moz-transform:  scaleX(1.20) scaleY(1.20) ;
+  }
+  67% {
+    -moz-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  100% {
+    -moz-transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+}
+
+@-webkit-keyframes dance2 {
+  0% {
+    -webkit-transform:  rotate(0deg) scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+  10% {
+    -webkit-transform:  scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+  13% {
+    -webkit-transform:  scaleX(1.00) scaleY(1.00) skewY(20deg) ;
+  }
+  17% {
+    -webkit-transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(-20deg) ;
+  }
+  21% {
+    -webkit-transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(20deg) ;
+  }
+  24% {
+    -webkit-transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+  30% {
+    -webkit-transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+  33% {
+    -webkit-transform:  scaleX(0.00) scaleY(1.00) ;
+  }
+  36% {
+    -webkit-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  39% {
+    -webkit-transform:  scaleX(0.00) scaleY(1.00) ;
+  }
+  43% {
+    -webkit-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  47% {
+    -webkit-transform:  scaleX(0.00) scaleY(1.00) ;
+  }
+  50% {
+    -webkit-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  54% {
+    -webkit-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  56% {
+    -webkit-transform:  scaleX(1.20) scaleY(1.20) ;
+  }
+  60% {
+    -webkit-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  63% {
+    -webkit-transform:  scaleX(1.15) scaleY(1.15) ;
+  }
+  64% {
+    -webkit-transform:  scaleX(1.20) scaleY(1.20) ;
+  }
+  67% {
+    -webkit-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  100% {
+    -webkit-transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+}
+
+@-o-keyframes dance2 {
+  0% {
+    -o-transform:  rotate(0deg) scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+  10% {
+    -o-transform:  scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+  13% {
+    -o-transform:  scaleX(1.00) scaleY(1.00) skewY(20deg) ;
+  }
+  17% {
+    -o-transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(-20deg) ;
+  }
+  21% {
+    -o-transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(20deg) ;
+  }
+  24% {
+    -o-transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+  30% {
+    -o-transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+  33% {
+    -o-transform:  scaleX(0.00) scaleY(1.00) ;
+  }
+  36% {
+    -o-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  39% {
+    -o-transform:  scaleX(0.00) scaleY(1.00) ;
+  }
+  43% {
+    -o-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  47% {
+    -o-transform:  scaleX(0.00) scaleY(1.00) ;
+  }
+  50% {
+    -o-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  54% {
+    -o-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  56% {
+    -o-transform:  scaleX(1.20) scaleY(1.20) ;
+  }
+  60% {
+    -o-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  63% {
+    -o-transform:  scaleX(1.15) scaleY(1.15) ;
+  }
+  64% {
+    -o-transform:  scaleX(1.20) scaleY(1.20) ;
+  }
+  67% {
+    -o-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  100% {
+    -o-transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+}
+
+@-ms-keyframes dance2 {
+  0% {
+    -ms-transform:  rotate(0deg) scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+  10% {
+    -ms-transform:  scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+  13% {
+    -ms-transform:  scaleX(1.00) scaleY(1.00) skewY(20deg) ;
+  }
+  17% {
+    -ms-transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(-20deg) ;
+  }
+  21% {
+    -ms-transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(20deg) ;
+  }
+  24% {
+    -ms-transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+  30% {
+    -ms-transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+  33% {
+    -ms-transform:  scaleX(0.00) scaleY(1.00) ;
+  }
+  36% {
+    -ms-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  39% {
+    -ms-transform:  scaleX(0.00) scaleY(1.00) ;
+  }
+  43% {
+    -ms-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  47% {
+    -ms-transform:  scaleX(0.00) scaleY(1.00) ;
+  }
+  50% {
+    -ms-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  54% {
+    -ms-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  56% {
+    -ms-transform:  scaleX(1.20) scaleY(1.20) ;
+  }
+  60% {
+    -ms-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  63% {
+    -ms-transform:  scaleX(1.15) scaleY(1.15) ;
+  }
+  64% {
+    -ms-transform:  scaleX(1.20) scaleY(1.20) ;
+  }
+  67% {
+    -ms-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+  100% {
+    -ms-transform:  rotate(1deg) scaleX(1.00) scaleY(1.00) skewY(0deg) ;
+  }
+}

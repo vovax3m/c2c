@@ -31,6 +31,7 @@ class Call extends CI_Controller {
 				$this->log('',$nomer,$status);
 				exit;
 			}
+			//проверяем первый символ номера
 			if($nomer[0]!='7' and $nomer[0]!='8') {
 				$status['error'][]='Number should to begin from 7 or 8';
 				echo ($form)? 'c2c_set_status("WRONG_CCODE");' : json_encode($status);
@@ -68,9 +69,28 @@ class Call extends CI_Controller {
 					// формируем запрос на ватс
 					$arrContextOptions=array("ssl"=>array("verify_peer"=>false,"verify_peer_name"=>false,),);  
 					$f=file_get_contents('http://91.196.5.205/c2c/call.php?a='.$r[0]['rgroup'].'&b='.$nomer.'&c='.$r[0]['trunk'].'&order='.$sett['call_order'], false, stream_context_create($arrContextOptions));
+					
+					//email notify
+					if($sett['email_notify']){
+					    $this->load->library('funcs');
+						$this->load->library('parser');
+						$mail_data=array( 
+													  'no'    => $nomer,
+													  'ip'     => $_SERVER['REMOTE_ADDR'],
+													  'date' => date('Y-m-d H:i:s')											  
+											);
+						if( isset( $sett['notify_tmpl'] ) and $sett['notify_tmpl'] ) {
+							$mail_tmpl = $this->parser->parse_string( $sett['notify_tmpl'], $mail_data, TRUE );
+						}
+						else {
+							$mail_tmpl = $this->parser->parse( 'templates/call_email_notify', $mail_data, TRUE );
+						}
+						$this->funcs->e_mail( $mail_tmpl, 'Заказ звонка с сайта', $sett['email'], $sett['email'] );	
+					}
+					
+					
 					//если есть ответ от сервера
 					if($f=='ok'){
-						
 						$data['counter']=$r[0]['counter']+1;
 						$i=$this->call_model->edit($r[0]['id'],$data);
 						if($form){
@@ -187,5 +207,34 @@ class Call extends CI_Controller {
 		}else{
 			echo 'format='.$format;
 		}
+	}
+	function feedback(){
+	    $this->load->model('call_model');
+	    $this->load->library('funcs');
+		$this->load->library('parser');
+		
+		$key=$this->input->get('key'); // api key
+		$no=$this->input->get('no'); // api key
+		$name=$this->input->get('name'); // api key
+		$email=$this->input->get('email'); // api key
+		$msg=$this->input->get('msg'); // api key
+		
+		if($key){
+			$this->load->model('call_model');
+			$r=$this->call_model->get_settings($key);
+			foreach($r as $v) $data[$v['param_key']]=$v['param_value'];
+		}
+		$array=array('msg'    =>$msg,
+							  'name' =>$name,
+							  'email' =>$email,
+							  'no'      =>$no);
+		if( isset( $sett['fb_tmpl'] ) and $sett['fb_tmpl'] ) {
+			$content = $this->parser->parse_string( $sett['fb_tmpl'], $array, TRUE );
+		}
+		else {
+			$content = $this->parser->parse( 'templates/feedback_email', $array, TRUE );
+		}
+		$this->funcs->e_mail( $content, 'с2с call', $email, $data['email'] );
+		$this->call_model->fb_log($name, $no, $msg, $email, $key );
 	}
 }
